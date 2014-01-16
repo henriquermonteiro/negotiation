@@ -23,5 +23,6 @@ public class Agent {
 		if (!this.knowledgeBase.contains(formula))
 			this.knowledgeBase.add(formula);
 	}
-	
+		
+	pub
 }
