@@ -14,6 +14,8 @@ public class Formula {
 	
 	double max;
 	double min;
+
+	double preference;
 		
 	public void addProperty (Map<String, Object> property) {
 		if (property == null)
@@ -73,4 +75,28 @@ public class Formula {
 	public void setMin(double min) {
 		this.min = min;
 	}	
+    public double getPreference() {
+		return preference;
+	}
+	public void setPreference(double preference) {
+		this.preference = preference;
+	}
+
+	@Override
+	public boolean equals(Object other){
+		if (other == null) return false;
+		if (other == this) return true;
+		if (!(other instanceof Formula)) return false;
+		Formula otherFormula = (Formula)other;		
+		return (otherFormula.name.equals(this.name) && otherFormula.property1.equals(this.property1) && otherFormula.property2.equals(this.property2));
+	}
+
+	@Override
+	public int hashCode()
+	{
+		int hash = 7 * name.hashCode() + 3;
+		hash = 3 * hash + property1.hashCode();		
+		return hash;
+	}
+	
 }
