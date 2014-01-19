@@ -8,7 +8,7 @@ public class BuyerAgent extends Agent {
 	
 	public BuyerAgent () {
 		super();
-		type = AgentType.SELLER;		
+		type = AgentType.BUYER;		
 	}
 	
 	@Override
@@ -22,12 +22,16 @@ public class BuyerAgent extends Agent {
 	@Override
 	public Formula getPreferedOffer () {		
 		List<Formula> potentialOffer = getPotentialOffer(null);
-				
+		
 		Collections.sort(potentialOffer, new Comparator<Formula>(){
 		    public int compare(Formula s1, Formula s2) {
-		        return Double.compare(s1.getPreference(), s2.getPreference());
-		    }
+		        return Double.compare(s2.getPreference(), s1.getPreference());
+		    }		    
 		});
+		
+		for (Formula formula : potentialOffer) {
+			System.out.println("---Potiencial Offer: " + formula);
+		}
 		
 		if (potentialOffer.size() > 0) return potentialOffer.get(0);
 		return null;

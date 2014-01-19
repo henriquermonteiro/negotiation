@@ -16,6 +16,17 @@ public class Formula {
 	double min;
 
 	double preference;
+	
+	public Formula () {
+		
+	}
+	
+	public Formula (String name, String property1, double price, double preference) {
+		this.name = name;
+		this.property1 = property1;
+		this.price = price;
+		this.preference = preference;
+	}
 		
 	public void addProperty (Map<String, Object> property) {
 		if (property == null)
@@ -97,6 +108,11 @@ public class Formula {
 		int hash = 7 * name.hashCode() + 3;
 		hash = 3 * hash + property1.hashCode();		
 		return hash;
+	}
+	
+	@Override
+	public String toString () {
+		return getName() + ", " + getProperty1() + " : Price" + price;
 	}
 	
 }

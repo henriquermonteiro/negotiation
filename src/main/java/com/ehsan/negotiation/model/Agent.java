@@ -13,7 +13,8 @@ public class Agent {
 	private List<Formula> history;				
 
 	public Agent () {
-		history = new ArrayList<Formula>();
+		knowledgeBase = new ArrayList<Formula>();
+		history = new ArrayList<Formula>();		
 	}
 	public int getId() {
 		return id;
@@ -67,6 +68,7 @@ public class Agent {
 		List<Formula> potentialOffer = new ArrayList<Formula>();
 		if (offer == null) {
 			potentialOffer = new ArrayList<Formula>(knowledgeBase);
+			return potentialOffer;
 		}
 
 		for (Formula formula : knowledgeBase) {
@@ -93,5 +95,12 @@ public class Agent {
 		}
 
 		return potentialOffer;
+	}
+	
+	public void reportKnowledgeBase () {
+		System.out.println("Agent Id: " + id + ", Type: " + type);
+		for (Formula formula: knowledgeBase) {			
+			System.out.println("---KB: " + formula);
+		}
 	}
 }
