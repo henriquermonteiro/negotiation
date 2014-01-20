@@ -1,5 +1,9 @@
 package com.ehsan.negotiation.model;
 
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 
 public class SellerAgent extends Agent{
 	
@@ -10,12 +14,28 @@ public class SellerAgent extends Agent{
 	
 	@Override
 	public Formula generateOffer (Formula offer) {
-		return null;
+		if (offer == null) {
+			return getPreferedOffer(offer);
+		}		
+		return getPreferedOffer(offer);
 	}
 	
 	@Override
-	public Formula getPreferedOffer () {
-		return null;	
+	public Formula getPreferedOffer (Formula offer) {
+		List<Formula> potentialOffer = getPotentialOffer(offer);
+		
+		Collections.sort(potentialOffer, new Comparator<Formula>(){
+		    public int compare(Formula s1, Formula s2) {
+		        return Double.compare(s2.getPreference(), s1.getPreference());
+		    }		    
+		});
+		
+		for (Formula formula : potentialOffer) {
+			System.out.println("---Potiencial Offer: " + formula);
+		}
+		
+		if (potentialOffer.size() > 0) return potentialOffer.get(0);
+		return null;
 	}
 	
 	@Override

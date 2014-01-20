@@ -99,7 +99,11 @@ public class Formula {
 		if (other == this) return true;
 		if (!(other instanceof Formula)) return false;
 		Formula otherFormula = (Formula)other;		
-		return (otherFormula.name.equals(this.name) && otherFormula.property1.equals(this.property1) && otherFormula.property2.equals(this.property2));
+		boolean equals = otherFormula.name.equals(this.name) && otherFormula.property1.equals(this.property1);
+		if (property2 != null && otherFormula.getProperty2() != null) {
+			equals &= otherFormula.property2.equals(this.property2);
+		}
+		return equals;
 	}
 
 	@Override
@@ -112,7 +116,8 @@ public class Formula {
 	
 	@Override
 	public String toString () {
-		return getName() + ", " + getProperty1() + " : Price" + price;
+		String result = String.format("%s, %s : Price%.0f, [pref: %.2f]", getName(), getProperty1(), getPrice(), getPreference());
+		return result;
 	}
 	
 }

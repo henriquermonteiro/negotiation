@@ -14,14 +14,14 @@ public class BuyerAgent extends Agent {
 	@Override
 	public Formula generateOffer (Formula offer) {
 		if (offer == null) {
-			return getPreferedOffer();
+			return getPreferedOffer(offer);
 		}
-		return null;
+		return getPreferedOffer(offer);
 	}
 	
 	@Override
-	public Formula getPreferedOffer () {		
-		List<Formula> potentialOffer = getPotentialOffer(null);
+	public Formula getPreferedOffer (Formula offer) {		
+		List<Formula> potentialOffer = getPotentialOffer(offer);
 		
 		Collections.sort(potentialOffer, new Comparator<Formula>(){
 		    public int compare(Formula s1, Formula s2) {

@@ -48,7 +48,7 @@ public class Agent {
 		return null;
 	}
 
-	public Formula getPreferedOffer () {
+	public Formula getPreferedOffer (Formula offer) {
 		return null;	
 	}
 
@@ -70,9 +70,27 @@ public class Agent {
 			potentialOffer = new ArrayList<Formula>(knowledgeBase);
 			return potentialOffer;
 		}
+		
+		boolean nameMatch = false;
+		boolean property1Match = false;
 
 		for (Formula formula : knowledgeBase) {
 			
+			if (offer.getName() == null || offer.getName().isEmpty() || offer.getName().equals("*") || offer.getName().equals(formula.getName())) {
+				nameMatch = true;
+			}
+			
+			if (offer.getProperty1() == null || offer.getProperty1().isEmpty() || offer.getProperty1().equals("*") || offer.getProperty1().equals(formula.getProperty1())) {
+				property1Match = true;
+			}
+			
+				
+			if (nameMatch && property1Match) {
+				potentialOffer.add(formula);
+				continue;
+			}
+			
+			/*	
 			if (offer.getName() != null && !offer.getName().isEmpty() && !offer.getName().equals("*") &&
 				offer.getProperty1() != null && !offer.getProperty1().isEmpty() && !offer.getProperty1().equals("*")) {
 				
@@ -91,7 +109,9 @@ public class Agent {
 				potentialOffer.add(formula);
 				continue;
 			}
+			
 			potentialOffer.add(formula);
+			*/
 		}
 
 		return potentialOffer;
