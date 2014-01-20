@@ -41,7 +41,7 @@ public class ScenarioOne implements Scenario {
 //				
 //		sellerAgent.addFormula(new Formula("HP", "15", 800, 0.8));		
 //		sellerAgent.addFormula(new Formula("Toshiba", "15", 850, 0.7));
-//		sellerAgent.addFormula(new Formula("Sony", "14", 800, 0.6));
+//		sellerAgent.addFormula(new Formula("Sony", "14", 800, 0.6));	
 		
 		buyerAgent.reportKnowledgeBase();
 		sellerAgent.reportKnowledgeBase();
@@ -66,7 +66,7 @@ public class ScenarioOne implements Scenario {
 			System.out.printf("Buyer Agent: ");
 			offer = buyerAgent.generateOffer(offer);
 			
-			System.out.println("---Chosen Offer: " + offer);			
+			System.out.println("===Chosen Offer: " + offer);			
 			if (offer == null) break;			
 			
 			step++;
@@ -74,7 +74,7 @@ public class ScenarioOne implements Scenario {
 			System.out.println("Seller Agent: ");
 			offer = sellerAgent.generateOffer(offer);
 			
-			System.out.println("---Chosen Offer: " + offer);			
+			System.out.println("===Chosen Offer: " + offer);			
 			if (offer == null) break;			
 			
 			if (step > 20) break;			
