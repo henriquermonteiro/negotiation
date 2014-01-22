@@ -157,7 +157,7 @@ public class Formula {
 	
 	@Override
 	public String toString () {
-		String result = String.format("%s, %s : Price%.0f, [pref: %.2f], th: %.0f --- RiskOfFail: %.2f, Prob: %.2f, Class: %s", getName(), getProperty1(), getPrice(), getPreference(), getThreshold(), getRiskOfFailure(), getProbability(), getArgumentClass());
+		String result = String.format("%s, %s : Price%.0f, [pref: %.2f], th: %.0f --- RiskOfFail: %.2f, Prob: %.4f, Class: %s", getName(), getProperty1(), getPrice(), getPreference(), getThreshold(), getRiskOfFailure(), getProbability(), getArgumentClass());
 		return result;
 	}
 	

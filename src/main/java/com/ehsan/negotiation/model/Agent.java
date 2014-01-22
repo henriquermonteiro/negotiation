@@ -110,6 +110,7 @@ public class Agent {
 		Random rnd = new Random();
 		
 		double total = 0;
+		double debugTotal = 0;
 		for (Formula formula: potentialOffer) {
 			formula.setRiskOfFailure(rnd.nextDouble()*2);
 			if (formula.getRiskOfFailure() < 0.5) 
@@ -120,10 +121,14 @@ public class Agent {
 				formula.setArgumentClass(ArgumentClass.C);
 			total += (2-formula.getRiskOfFailure());
 		}
+			
 		
 		for (Formula formula: potentialOffer) {
 			formula.setProbability((2-formula.getRiskOfFailure()) / total);
+			debugTotal += formula.getProbability();
 		}
+		
+		System.out.println("---+++Test Total Prob: " + debugTotal);
 		
 		double entropy = 0;
 		for (Formula formula: potentialOffer) {
