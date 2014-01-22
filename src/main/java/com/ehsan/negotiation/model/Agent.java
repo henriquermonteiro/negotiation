@@ -118,7 +118,7 @@ public class Agent {
 				formula.setArgumentClass(ArgumentClass.B);
 			else 
 				formula.setArgumentClass(ArgumentClass.C);
-			total += formula.getRiskOfFailure();
+			total += (2-formula.getRiskOfFailure());
 		}
 		
 		for (Formula formula: potentialOffer) {
