@@ -2,8 +2,9 @@ package com.ehsan.negotiation.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-import com.ehsan.negotiation.util.Constant;
+import com.ehsan.negotiation.util.MathTools;
 
 public class Agent {
 
@@ -100,8 +101,34 @@ public class Agent {
 	
 	public void analysePotentialOffers(List<Formula> potentialOffer) {
 		
+		if (potentialOffer.size() == 0) return;
+		
 		System.out.println("---+++Analysing Offers");
 		System.out.println("---+++Number of potential offers: " + potentialOffer.size());
 		
+		Random rnd = new Random();
+		
+		double total = 0;
+		for (Formula formula: potentialOffer) {
+			formula.setRiskOfFailure(rnd.nextDouble()*2);
+			total += formula.getRiskOfFailure();
+		}
+		
+		for (Formula formula: potentialOffer) {
+			formula.setProbability(formula.getRiskOfFailure() / total);
+		}
+		
+		double entropy = 0;
+		for (Formula formula: potentialOffer) {
+			entropy -= formula.getProbability() * MathTools.Log2(formula.getProbability());
+		}
+		
+		double uncertainty = 0;
+		if (MathTools.Log2(potentialOffer.size()) == 0) 
+			uncertainty = 0;
+		else 
+			uncertainty = entropy / MathTools.Log2(potentialOffer.size());
+		
+		System.out.printf("---+++Uncertainty: %.2f \n", uncertainty);
 	}
 }

@@ -18,6 +18,10 @@ public class Formula {
 
 	double preference;
 	
+	//helper
+	double probability;
+	double riskOfFailure;
+	
 	public Formula () {
 		
 	}
@@ -100,6 +104,18 @@ public class Formula {
 	public void setThreshold(double threshold) {
 		this.threshold = threshold;
 	}
+	public double getProbability() {
+		return probability;
+	}
+	public void setProbability(double probability) {
+		this.probability = probability;
+	}
+	public double getRiskOfFailure() {
+		return riskOfFailure;
+	}
+	public void setRiskOfFailure(double riskOfFailure) {
+		this.riskOfFailure = riskOfFailure;
+	}
 
 	@Override
 	public boolean equals(Object other){
@@ -124,7 +140,7 @@ public class Formula {
 	
 	@Override
 	public String toString () {
-		String result = String.format("%s, %s : Price%.0f, [pref: %.2f], th: %.0f", getName(), getProperty1(), getPrice(), getPreference(), getThreshold());
+		String result = String.format("%s, %s : Price%.0f, [pref: %.2f], th: %.0f --- RiskOfFail: %.2f, Prob: %.2f", getName(), getProperty1(), getPrice(), getPreference(), getThreshold(), getRiskOfFailure(), getProbability());
 		return result;
 	}
 	

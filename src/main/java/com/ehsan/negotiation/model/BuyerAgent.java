@@ -32,6 +32,8 @@ public class BuyerAgent extends Agent {
 			}		    
 		});
 
+		analysePotentialOffers (potentialOffer);
+		
 		for (Formula formula : potentialOffer) {
 			System.out.println("---Potiencial Offer: " + formula);
 		}

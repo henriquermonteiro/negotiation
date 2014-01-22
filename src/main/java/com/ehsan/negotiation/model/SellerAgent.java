@@ -32,13 +32,12 @@ public class SellerAgent extends Agent{
 				return Double.compare(s2.getPreference(), s1.getPreference());
 			}		    
 		});
-
-		for (Formula formula : potentialOffer) {
-			System.out.println("---Potiencial Offer: " + formula);
-		}
 		
 		analysePotentialOffers (potentialOffer);
 		
+		for (Formula formula : potentialOffer) {
+			System.out.println("---Potiencial Offer: " + formula);
+		}
 
 		Formula responseOffer =  null;		
 		if (potentialOffer.size() > 0) {
