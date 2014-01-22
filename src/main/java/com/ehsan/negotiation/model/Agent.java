@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.ehsan.negotiation.model.Formula.ArgumentClass;
 import com.ehsan.negotiation.util.MathTools;
 
 public class Agent {
@@ -111,11 +112,17 @@ public class Agent {
 		double total = 0;
 		for (Formula formula: potentialOffer) {
 			formula.setRiskOfFailure(rnd.nextDouble()*2);
+			if (formula.getRiskOfFailure() < 0.5) 
+				formula.setArgumentClass(ArgumentClass.A);
+			else if (formula.getRiskOfFailure() < 1)
+				formula.setArgumentClass(ArgumentClass.B);
+			else 
+				formula.setArgumentClass(ArgumentClass.C);
 			total += formula.getRiskOfFailure();
 		}
 		
 		for (Formula formula: potentialOffer) {
-			formula.setProbability(formula.getRiskOfFailure() / total);
+			formula.setProbability((2-formula.getRiskOfFailure()) / total);
 		}
 		
 		double entropy = 0;

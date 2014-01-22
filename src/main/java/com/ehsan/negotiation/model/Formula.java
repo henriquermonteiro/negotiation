@@ -8,6 +8,8 @@ public class Formula {
 	double price;
 	List<Map<String, Object>> properties; 
 	
+	public enum ArgumentClass {A, B, C};
+	
 	String name;
 	String property1;
 	String property2;	
@@ -21,6 +23,7 @@ public class Formula {
 	//helper
 	double probability;
 	double riskOfFailure;
+	ArgumentClass argumentClass;
 	
 	public Formula () {
 		
@@ -116,6 +119,12 @@ public class Formula {
 	public void setRiskOfFailure(double riskOfFailure) {
 		this.riskOfFailure = riskOfFailure;
 	}
+	public ArgumentClass getArgumentClass() {
+		return argumentClass;
+	}
+	public void setArgumentClass(ArgumentClass argumentClass) {
+		this.argumentClass = argumentClass;
+	}
 
 	@Override
 	public boolean equals(Object other){
@@ -140,7 +149,7 @@ public class Formula {
 	
 	@Override
 	public String toString () {
-		String result = String.format("%s, %s : Price%.0f, [pref: %.2f], th: %.0f --- RiskOfFail: %.2f, Prob: %.2f", getName(), getProperty1(), getPrice(), getPreference(), getThreshold(), getRiskOfFailure(), getProbability());
+		String result = String.format("%s, %s : Price%.0f, [pref: %.2f], th: %.0f --- RiskOfFail: %.2f, Prob: %.2f, Class: %s", getName(), getProperty1(), getPrice(), getPreference(), getThreshold(), getRiskOfFailure(), getProbability(), getArgumentClass());
 		return result;
 	}
 	

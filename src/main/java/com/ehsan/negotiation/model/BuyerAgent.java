@@ -26,13 +26,14 @@ public class BuyerAgent extends Agent {
 		Formula resultOffer =  null;	
 		List<Formula> potentialOffer = getPotentialOffer(offer);
 
+		analysePotentialOffers (potentialOffer);
+		
 		Collections.sort(potentialOffer, new Comparator<Formula>(){
 			public int compare(Formula s1, Formula s2) {
-				return Double.compare(s2.getPreference(), s1.getPreference());
+				//return Double.compare(s2.getPreference(), s1.getPreference());
+				return Double.compare(s2.getProbability(), s1.getProbability());
 			}		    
-		});
-
-		analysePotentialOffers (potentialOffer);
+		});		
 		
 		for (Formula formula : potentialOffer) {
 			System.out.println("---Potiencial Offer: " + formula);
