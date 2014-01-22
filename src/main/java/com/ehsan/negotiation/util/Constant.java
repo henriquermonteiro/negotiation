@@ -15,10 +15,11 @@ public class Constant {
 	
 	@SuppressWarnings("serial")
 	public static ArrayList<String> PROPERTY1_LIST = new ArrayList<String>() {{
+		add("*");
 	    add("14");
 	    add("15");
 	    add("16");
-	    add("17");
+	    add("17");	    
 	}};
 	
 }

@@ -18,22 +18,31 @@ public class ScenarioOne implements Scenario {
 		sellerAgent = new SellerAgent();			
 		
 		Random rnd = new Random();
-		int k = rnd.nextInt(8)+4;
+		int k = rnd.nextInt(16)+7;
 		
 		for (int i = 0; i < k; i++) {
-			buyerAgent.addFormula(new Formula(
+			double price = 300 + rnd.nextInt(6)*50;
+			buyerAgent.addKnowledgeBaseFormula(new Formula(
 					Constant.NAME_LIST.get(rnd.nextInt(Constant.NAME_LIST.size())),
 					Constant.PROPERTY1_LIST.get(rnd.nextInt(Constant.PROPERTY1_LIST.size())), 
-					300 + rnd.nextInt(6)*50, rnd.nextDouble()));
+					price,
+					rnd.nextDouble(),
+					price + (rnd.nextInt(8))*50));
 		}
 		
-		k = rnd.nextInt(8)+4;
+		k = rnd.nextInt(16)+7;
 		for (int i = 0; i < k; i++) {
-			sellerAgent.addFormula(new Formula(
+			double price = 600 + rnd.nextInt(6)*50;
+			sellerAgent.addKnowledgeBaseFormula(new Formula(
 					Constant.NAME_LIST.get(rnd.nextInt(Constant.NAME_LIST.size())),
 					Constant.PROPERTY1_LIST.get(rnd.nextInt(Constant.PROPERTY1_LIST.size())), 
-					600 + rnd.nextInt(6)*50, rnd.nextDouble()));
+					price,
+					rnd.nextDouble(),
+					price - (rnd.nextInt(8))*50));
 		}
+		
+		sellerAgent.normalizeKnowledgeBase();
+		buyerAgent.normalizeKnowledgeBase();
 		
 //		buyerAgent.addFormula(new Formula("*", "14", 500, 0.7));
 //		buyerAgent.addFormula(new Formula("HP", "15", 600, 0.6));		
@@ -56,6 +65,7 @@ public class ScenarioOne implements Scenario {
 		int step = 0;
 		
 		System.out.println("");
+		System.out.println("************* Negotiation Starts *************");
 		
 		while (true) {
 			
@@ -63,7 +73,7 @@ public class ScenarioOne implements Scenario {
 			//System.out.println("");
 			
 			System.out.println("Step: " + step);
-			System.out.printf("Buyer Agent: ");
+			System.out.println("Buyer Agent: ");
 			offer = buyerAgent.generateOffer(offer);
 			
 			System.out.println("===Chosen Offer: " + offer);			
@@ -77,7 +87,7 @@ public class ScenarioOne implements Scenario {
 			System.out.println("===Chosen Offer: " + offer);			
 			if (offer == null) break;			
 			
-			if (step > 20) break;			
+			if (step > 100) break;			
 		}
 		
 		System.out.println("*******************************");

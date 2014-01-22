@@ -3,6 +3,8 @@ package com.ehsan.negotiation.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ehsan.negotiation.util.Constant;
+
 public class Agent {
 
 	public enum AgentType {BUYER, SELLER};
@@ -34,13 +36,21 @@ public class Agent {
 	public void setKnowledgeBase(List<Formula> knowledgeBase) {
 		this.knowledgeBase = knowledgeBase;
 	}
-	public void addFormula (Formula formula) {
+	public void addKnowledgeBaseFormula (Formula formula) {
 		if (formula == null)
 			return;
 		if (this.knowledgeBase == null)
 			this.knowledgeBase = new ArrayList<Formula>();
 		if (!this.knowledgeBase.contains(formula))
 			this.knowledgeBase.add(formula);
+	}
+	public void addHistoryFormula (Formula formula) {
+		if (formula == null)
+			return;
+		if (this.history == null)
+			this.history = new ArrayList<Formula>();
+		if (!this.history.contains(formula))
+			this.history.add(formula);
 	}
 
 
@@ -74,5 +84,24 @@ public class Agent {
 		for (Formula formula: knowledgeBase) {			
 			System.out.println("---KB: " + formula);
 		}
+	}
+	
+	public void normalizeKnowledgeBase() {
+		for (Formula formula: knowledgeBase) {
+			if (formula.getName().equals("*")) {
+				formula.setPreference(formula.getPreference() + 0.2);
+			}
+			if (formula.getProperty1().equals("*")) {
+				formula.setPreference(formula.getPreference() + 0.02);
+			}
+		}
+		
+	}
+	
+	public void analysePotentialOffers(List<Formula> potentialOffer) {
+		
+		System.out.println("---+++Analysing Offers");
+		System.out.println("---+++Number of potential offers: " + potentialOffer.size());
+		
 	}
 }

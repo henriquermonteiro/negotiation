@@ -14,6 +14,7 @@ public class Formula {
 	
 	double max;
 	double min;
+	double threshold;
 
 	double preference;
 	
@@ -21,11 +22,12 @@ public class Formula {
 		
 	}
 	
-	public Formula (String name, String property1, double price, double preference) {
+	public Formula (String name, String property1, double price, double preference, double threshold) {
 		this.name = name;
 		this.property1 = property1;
 		this.price = price;
 		this.preference = preference;
+		this.threshold = threshold;
 	}
 		
 	public void addProperty (Map<String, Object> property) {
@@ -91,6 +93,12 @@ public class Formula {
 	}
 	public void setPreference(double preference) {
 		this.preference = preference;
+	}	
+	public double getThreshold() {
+		return threshold;
+	}
+	public void setThreshold(double threshold) {
+		this.threshold = threshold;
 	}
 
 	@Override
@@ -116,7 +124,7 @@ public class Formula {
 	
 	@Override
 	public String toString () {
-		String result = String.format("%s, %s : Price%.0f, [pref: %.2f]", getName(), getProperty1(), getPrice(), getPreference());
+		String result = String.format("%s, %s : Price%.0f, [pref: %.2f], th: %.0f", getName(), getProperty1(), getPrice(), getPreference(), getThreshold());
 		return result;
 	}
 	
