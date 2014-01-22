@@ -61,7 +61,7 @@ public class ScenarioOne implements Scenario {
 
 		initialize ();
 
-		Formula offer = null;
+		Formula offer = null, prevOffer= null;
 		int step = 0;
 
 		System.out.println("");
@@ -74,36 +74,37 @@ public class ScenarioOne implements Scenario {
 
 			System.out.println("Step: " + step);
 			System.out.println("Buyer Agent: ");
+			prevOffer = offer;
 			offer = buyerAgent.generateOffer(offer);
-
-			System.out.println("===Chosen Offer: " + offer);			
+			
 			if (offer == null) {
 				System.out.println("*****No Agreement reached******");
 				break;
-			};				
-
-			//Reached aggreement?
+			};
 			if (offer.isAccepted()) {
 				System.out.println("*****Agreement reached******");
+				System.out.println("===Chosen Offer: " + offer);
 				break;
 			}
-
+			System.out.println("===Chosen Offer: " + offer);	
+									
+			
 			step++;
 			System.out.println("Step: " + step);
 			System.out.println("Seller Agent: ");
+			prevOffer = offer;
 			offer = sellerAgent.generateOffer(offer);
 
-			System.out.println("===Chosen Offer: " + offer);			
 			if (offer == null) {
 				System.out.println("*****No Agreement reached******");
 				break;
 			};	
-
-			//Reached aggreement?
 			if (offer.isAccepted()) {
 				System.out.println("*****Agreement reached******");
+				System.out.println("===Chosen Offer: " + offer);
 				break;
-			}
+			}					
+			System.out.println("===Chosen Offer: " + offer);
 
 			if (step > 100) {
 				System.out.println("*****No Agreement reached after 100 steps******");
