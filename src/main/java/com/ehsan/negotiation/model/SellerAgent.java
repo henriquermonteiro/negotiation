@@ -19,6 +19,8 @@ public class SellerAgent extends Agent{
 		if (responseOffer != null) {
 			addHistoryFormula(responseOffer);
 		}		
+		if (offer != null && offer.equals(responseOffer) && offer.getPrice() >= responseOffer.getThreshold())
+			responseOffer.setAccepted(true);
 		return responseOffer;
 	}
 

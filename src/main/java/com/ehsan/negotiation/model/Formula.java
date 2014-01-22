@@ -24,9 +24,10 @@ public class Formula {
 	double probability;
 	double riskOfFailure;
 	ArgumentClass argumentClass;
+	boolean accepted;
 	
 	public Formula () {
-		
+		this.accepted = false;
 	}
 	
 	public Formula (String name, String property1, double price, double preference, double threshold) {
@@ -35,6 +36,7 @@ public class Formula {
 		this.price = price;
 		this.preference = preference;
 		this.threshold = threshold;
+		this.accepted = false;
 	}
 		
 	public void addProperty (Map<String, Object> property) {
@@ -124,6 +126,12 @@ public class Formula {
 	}
 	public void setArgumentClass(ArgumentClass argumentClass) {
 		this.argumentClass = argumentClass;
+	}
+	public boolean isAccepted() {
+		return accepted;
+	}
+	public void setAccepted(boolean accepted) {
+		this.accepted = accepted;
 	}
 
 	@Override
