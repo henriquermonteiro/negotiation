@@ -85,7 +85,8 @@ public class Agent {
 	public void reportKnowledgeBase () {
 		System.out.println("Agent Id: " + id + ", Type: " + type);
 		for (Formula formula: knowledgeBase) {			
-			System.out.println("---KB: " + formula);
+			String result = String.format("%s, %s : Price%.0f, th: %.0f", formula.getName(), formula.getProperty1(), formula.getPrice(), formula.getPreference(), formula.getThreshold());
+			System.out.println("---KB: " + result);
 		}
 	}
 	
@@ -129,7 +130,7 @@ public class Agent {
 			debugTotal += formula.getProbability();
 		}
 		
-		System.out.println("---+++Test Total Prob: " + debugTotal);
+		System.out.printf("---+++Test Total Prob: %.2f\n", (double)Math.round(debugTotal));
 		
 		double entropy = 0;
 		for (Formula formula: potentialOffer) {
