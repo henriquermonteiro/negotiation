@@ -14,8 +14,8 @@ public class SellerAgent extends Agent{
 	}
 
 	@Override
-	public Formula generateOffer (Formula offer) {
-		Formula responseOffer = getPreferedOffer(offer);	
+	public Formula generateOffer (Formula offer, int snum) {
+		Formula responseOffer = getPreferedOffer(offer, snum);	
 		if (responseOffer != null) {
 			addHistoryFormula(responseOffer);
 		}		
@@ -25,18 +25,26 @@ public class SellerAgent extends Agent{
 	}
 
 	@Override
-	public Formula getPreferedOffer (Formula offer) {
+	public Formula getPreferedOffer (Formula offer, int snum) {
 		Formula resultOffer =  null;	
 		List<Formula> potentialOffer = getPotentialOffer(offer);
 
 		analysePotentialOffers (potentialOffer);
 		
-		Collections.sort(potentialOffer, new Comparator<Formula>(){
-			public int compare(Formula s1, Formula s2) {
-				//return Double.compare(s2.getPreference(), s1.getPreference());
-				return Double.compare(s2.getProbability(), s1.getProbability());
-			}		    
-		});
+		if (snum == 1) {		
+			Collections.sort(potentialOffer, new Comparator<Formula>(){
+				public int compare(Formula s1, Formula s2) {
+					//return Double.compare(s2.getPreference(), s1.getPreference());
+					return Double.compare(s2.getProbability(), s1.getProbability());
+				}		    
+			});
+		} else if (snum == 2) {
+			Collections.sort(potentialOffer, new Comparator<Formula>(){
+				public int compare(Formula s1, Formula s2) {
+					return Double.compare(s2.getPreference(), s1.getPreference());
+				}		    
+			});
+		}
 					
 		for (Formula formula : potentialOffer) {
 			System.out.println("---Potiencial Offer: " + formula);

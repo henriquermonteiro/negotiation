@@ -56,9 +56,7 @@ public class ScenarioOne implements Scenario {
 		//		sellerAgent.addFormula(new Formula("HP", "15", 800, 0.8));		
 		//		sellerAgent.addFormula(new Formula("Toshiba", "15", 850, 0.7));
 		//		sellerAgent.addFormula(new Formula("Sony", "14", 800, 0.6));	
-
-		buyerAgent.reportKnowledgeBase();
-		sellerAgent.reportKnowledgeBase();				
+			
 	}
 
 	@Override
@@ -66,12 +64,32 @@ public class ScenarioOne implements Scenario {
 
 		initialize ();
 
+		System.out.println("");
+		System.out.println("*************************************************");
+		System.out.println("***************** Scenario One ******************");
+		System.out.println("*************************************************");
+		buyerAgent.reportKnowledgeBase();
+		sellerAgent.reportKnowledgeBase();	
+		negotiate(1);
+				
+					
+		System.out.println("");
+		System.out.println("*************************************************");
+		System.out.println("***************** Scenario Two ******************");
+		System.out.println("*************************************************");
+		sellerAgent.restoreKnowlegdeBaseSnapShot();
+		buyerAgent.restoreKnowlegdeBaseSnapShot();
+		buyerAgent.reportKnowledgeBase();
+		sellerAgent.reportKnowledgeBase();		
+		negotiate(2);
+	}
+
+	private void negotiate(int snum) {
 		Formula offer = null, prevOffer= null;
 		int step = 0;
 
 		System.out.println("");
 		System.out.println("************* Negotiation Starts *************");
-
 		while (true) {
 
 			step++;			
@@ -80,7 +98,7 @@ public class ScenarioOne implements Scenario {
 			System.out.println("Step: " + step);
 			System.out.println("Buyer Agent: ");
 			prevOffer = offer;
-			offer = buyerAgent.generateOffer(offer);
+			offer = buyerAgent.generateOffer(offer, snum);
 			
 			if (offer == null) {
 				System.out.println("*****No Agreement reached******");
@@ -98,7 +116,7 @@ public class ScenarioOne implements Scenario {
 			System.out.println("Step: " + step);
 			System.out.println("Seller Agent: ");
 			prevOffer = offer;
-			offer = sellerAgent.generateOffer(offer);
+			offer = sellerAgent.generateOffer(offer, snum);
 
 			if (offer == null) {
 				System.out.println("*****No Agreement reached******");
@@ -117,11 +135,6 @@ public class ScenarioOne implements Scenario {
 		}
 
 		System.out.println("Took Step: " + step);
-				
-		sellerAgent.restoreKnowlegdeBaseSnapShot();
-		buyerAgent.restoreKnowlegdeBaseSnapShot();		
-		buyerAgent.reportKnowledgeBase();
-		sellerAgent.reportKnowledgeBase();
 	}
 
 }

@@ -57,11 +57,11 @@ public class Agent {
 	}
 
 
-	public Formula generateOffer (Formula offer) {
+	public Formula generateOffer (Formula offer, int snum) {
 		return null;
 	}
 
-	public Formula getPreferedOffer (Formula offer) {
+	public Formula getPreferedOffer (Formula offer, int snum) {
 		return null;	
 	}
 
