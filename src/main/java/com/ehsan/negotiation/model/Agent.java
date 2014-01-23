@@ -14,7 +14,8 @@ public class Agent {
 	protected int id;
 	protected AgentType type;	
 	protected List<Formula> knowledgeBase;
-	protected List<Formula> history;				
+	protected List<Formula> history;
+	protected List<Formula> snapShotKnowledgeBase;
 
 	public Agent () {
 		knowledgeBase = new ArrayList<Formula>();
@@ -142,5 +143,19 @@ public class Agent {
 			uncertainty = entropy / MathTools.Log2(potentialOffer.size());
 		
 		System.out.printf("---+++Uncertainty: %.2f \n", uncertainty);
+	}
+	
+	public void saveKnowlegdeBaseSnapShot () {
+		snapShotKnowledgeBase = new ArrayList<Formula>();
+		for (Formula formula: knowledgeBase) {			
+			snapShotKnowledgeBase.add(formula);
+		}
+	}
+	
+	public void restoreKnowlegdeBaseSnapShot () {
+		knowledgeBase = new ArrayList<Formula>();
+		for (Formula formula: snapShotKnowledgeBase) {			
+			knowledgeBase.add(formula);
+		}
 	}
 }
