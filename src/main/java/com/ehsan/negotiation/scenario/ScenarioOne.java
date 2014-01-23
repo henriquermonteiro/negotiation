@@ -43,6 +43,11 @@ public class ScenarioOne implements Scenario {
 
 		sellerAgent.normalizeKnowledgeBase();
 		buyerAgent.normalizeKnowledgeBase();
+		
+		sellerAgent.saveKnowlegdeBaseSnapShot();
+		buyerAgent.saveKnowlegdeBaseSnapShot();
+		
+		
 
 		//		buyerAgent.addFormula(new Formula("*", "14", 500, 0.7));
 		//		buyerAgent.addFormula(new Formula("HP", "15", 600, 0.6));		
@@ -53,7 +58,7 @@ public class ScenarioOne implements Scenario {
 		//		sellerAgent.addFormula(new Formula("Sony", "14", 800, 0.6));	
 
 		buyerAgent.reportKnowledgeBase();
-		sellerAgent.reportKnowledgeBase();
+		sellerAgent.reportKnowledgeBase();				
 	}
 
 	@Override
@@ -112,7 +117,11 @@ public class ScenarioOne implements Scenario {
 		}
 
 		System.out.println("Took Step: " + step);
-
+				
+		sellerAgent.restoreKnowlegdeBaseSnapShot();
+		buyerAgent.restoreKnowlegdeBaseSnapShot();		
+		buyerAgent.reportKnowledgeBase();
+		sellerAgent.reportKnowledgeBase();
 	}
 
 }

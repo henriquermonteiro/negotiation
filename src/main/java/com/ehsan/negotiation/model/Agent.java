@@ -147,15 +147,17 @@ public class Agent {
 	
 	public void saveKnowlegdeBaseSnapShot () {
 		snapShotKnowledgeBase = new ArrayList<Formula>();
-		for (Formula formula: knowledgeBase) {			
-			snapShotKnowledgeBase.add(formula);
+		for (Formula formula: knowledgeBase) {		
+			Formula newFormula = new Formula(formula);
+			snapShotKnowledgeBase.add(newFormula);
 		}
 	}
 	
 	public void restoreKnowlegdeBaseSnapShot () {
 		knowledgeBase = new ArrayList<Formula>();
 		for (Formula formula: snapShotKnowledgeBase) {			
-			knowledgeBase.add(formula);
+			Formula newFormula = new Formula(formula);
+			knowledgeBase.add(newFormula);
 		}
 	}
 }

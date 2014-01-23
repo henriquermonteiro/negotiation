@@ -38,6 +38,21 @@ public class Formula {
 		this.threshold = threshold;
 		this.accepted = false;
 	}
+	
+	public Formula (Formula formula) {
+		this.accepted = formula.isAccepted();
+		this.argumentClass = formula.getArgumentClass();
+		this.max = formula.getMax();
+		this.min = formula.getMin();
+		this.name = formula.getName();
+		this.preference = formula.getPreference();
+		this.price = formula.getPrice();		
+		this.probability = formula.getProbability();
+		this.property1 = formula.getProperty1();
+		this.property2 = formula.getProperty2();
+		this.riskOfFailure = formula.getRiskOfFailure();
+		this.threshold = formula.getThreshold();
+	}
 		
 	public void addProperty (Map<String, Object> property) {
 		if (property == null)
